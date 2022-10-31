@@ -18,3 +18,11 @@
 
 ### P.S.
 Also you can find image at docker hub, pull it and run https://hub.docker.com/r/straxseller/nest_lab
+
+1. Pull image
+
+``docker pull straxseller/nest_lab``
+
+2. Run it
+
+``docker run -d -p 80:3000 -m=50m --cpus="1.5" straxseller/nest_lab``
