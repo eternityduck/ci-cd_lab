@@ -22,7 +22,7 @@ jobs:
       id: cache
       uses: actions/cache@v3
       with:
-        path: ./hello_nest/node_modules
+        path: ./node_modules
         key: modules-${{ hashFiles('package-lock.json') }}
 
     - name: Install dependencies
