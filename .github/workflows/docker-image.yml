@@ -24,8 +24,7 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v2
       with:
-        working-directory: ./hello_nest
-        context: .
+        context: ./hello_nest
         push: true
         tags: straxseller/hello_nest:latest
       
