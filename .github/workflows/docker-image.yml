@@ -13,8 +13,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: "18"
+
+    - name: Cache dependencies
+      id: cache
+      uses: actions/cache@v3
+      with:
+        path: ./hello_nest/node_modules
+        key: modules-${{ hashFiles('package-lock.json') }}
+
+    - name: Install dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: npm ci --ignore-scripts
+
+    - name: Run code quality checks
+      run: npm run lint
+        
     - name: Checkout repo
       uses: actions/checkout@v3
+
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
       with:
