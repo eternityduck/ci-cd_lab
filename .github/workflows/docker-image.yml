@@ -27,7 +27,7 @@ jobs:
 
     - name: Install dependencies
       if: steps.cache.outputs.cache-hit != 'true'
-      run: npm ci --ignore-scripts
+      run: npm ci
 
     - name: Run code quality checks
       run: npm run lint
@@ -44,7 +44,7 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v2
       with:
-        context: ./hello_nest
+        context: .
         push: true
         tags: straxseller/hello_nest:latest
       
