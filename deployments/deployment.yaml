@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-nestlab
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nestlab
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: nestlab
+    spec:
+      containers:
+      - image: straxseller/nest_lab:latest
+        name: nestlab
+        ports:
+        - containerPort: 8080
+          name: nestlab
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 3
