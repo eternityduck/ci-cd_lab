@@ -7,5 +7,5 @@ spec:
     app: nestlab
   ports:
   - port: 8765
-    targetPort: 8080
+    targetPort: 3000
   type: LoadBalancer

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: confnginx
+data:
+  nginx.conf: |
+    http {
+      upstream app {
+        server app:81;
+      }
+
+      server {
+        listen 80;
+
+        location / {
+          rewrite ^/ /$1 break; # works for both /server1 and /server1/
+          proxy_pass http://app/;
+        }
+    }
